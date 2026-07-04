@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: inventario-service
+
+  config:
+    import: ${SPRING_CONFIG_IMPORT:configserver:http://localhost:8888}

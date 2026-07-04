@@ -1,0 +1,103 @@
+server:
+  port: 9090
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowedOriginPatterns: "*"
+                allowedMethods:
+                  - GET
+                  - POST
+                  - PUT
+                  - PATCH
+                  - DELETE
+                  - OPTIONS
+                allowedHeaders: "*"
+                allowCredentials: true
+          routes:
+            - id: productos
+              uri: lb://productos-service
+              predicates:
+                - Path=/api/v1/productos/**, /v3/api-docs/productos
+              filters:
+                - RewritePath=/v3/api-docs/productos, /v3/api-docs
+
+            - id: clientes
+              uri: lb://clientes-service
+              predicates:
+                - Path=/api/v1/clientes/**, /v3/api-docs/clientes
+              filters:
+                - RewritePath=/v3/api-docs/clientes, /v3/api-docs
+
+            - id: categorias
+              uri: lb://categorias-service
+              predicates:
+                - Path=/api/v1/categorias/**, /v3/api-docs/categorias
+              filters:
+                - RewritePath=/v3/api-docs/categorias, /v3/api-docs
+
+            - id: marcas
+              uri: lb://marcas-service
+              predicates:
+                - Path=/api/v1/marcas/**, /v3/api-docs/marcas
+              filters:
+                - RewritePath=/v3/api-docs/marcas, /v3/api-docs
+
+            - id: pedidos
+              uri: lb://pedidos-service
+              predicates:
+                - Path=/api/v1/pedidos/**, /v3/api-docs/pedidos
+              filters:
+                - RewritePath=/v3/api-docs/pedidos, /v3/api-docs
+
+            - id: carrito
+              uri: lb://carrito-service
+              predicates:
+                - Path=/api/v1/carrito/**, /v3/api-docs/carrito
+              filters:
+                - RewritePath=/v3/api-docs/carrito, /v3/api-docs
+
+            - id: pagos
+              uri: lb://pagos-service
+              predicates:
+                - Path=/api/v1/pagos/**, /v3/api-docs/pagos
+              filters:
+                - RewritePath=/v3/api-docs/pagos, /v3/api-docs
+
+            - id: inventario
+              uri: lb://inventario-service
+              predicates:
+                - Path=/api/v1/inventario/**, /v3/api-docs/inventario
+              filters:
+                - RewritePath=/v3/api-docs/inventario, /v3/api-docs
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: Productos
+        url: /v3/api-docs/productos
+      - name: Clientes
+        url: /v3/api-docs/clientes
+      - name: Categorias
+        url: /v3/api-docs/categorias
+      - name: Marcas
+        url: /v3/api-docs/marcas
+      - name: Pedidos
+        url: /v3/api-docs/pedidos
+      - name: Carrito
+        url: /v3/api-docs/carrito
+      - name: Pagos
+        url: /v3/api-docs/pagos
+      - name: Inventario
+        url: /v3/api-docs/inventario
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}

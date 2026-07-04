@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: pagos-service
+  config:
+    import: optional:configserver:http://localhost:8888
+  cloud:
+    config:
+      enabled: false
+
+eureka:
+  client:
+    enabled: false
