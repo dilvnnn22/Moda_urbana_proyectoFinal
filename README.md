@@ -1,3 +1,9 @@
+# Integrantes 
+Deland Cabello 
+Ariel Catalan
+Josefa Sanchez
+
+
 # Moda Urbana - Arquitectura de Microservicios
 
 Proyecto de e-commerce de moda con arquitectura de microservicios Spring Boot, dockerizado y con Swagger/OpenAPI centralizado en el API Gateway.
